@@ -55,4 +55,5 @@ formatters:
     - gofumpt
   settings:
     goimports:
-      local-prefixes: github.com/hirosassa/nimoji
+      local-prefixes:
+        - github.com/hirosassa/nimoji
