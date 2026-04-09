@@ -1,0 +1,95 @@
+version: 2
+
+before:
+  hooks:
+    - go mod tidy
+    - go mod download
+
+builds:
+  - id: nimoji
+    main: .
+    binary: nimoji
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    ignore:
+      - goos: windows
+        goarch: arm64
+    ldflags:
+      - -s -w
+    flags:
+      - -trimpath
+
+archives:
+  - id: nimoji
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else }}{{ .Arch }}{{ end }}
+    files:
+      - README.md
+      - LICENSE*
+
+checksum:
+  name_template: 'checksums.txt'
+
+snapshot:
+  version_template: "{{ incpatch .Version }}-next"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+      - '^chore:'
+      - '^ci:'
+      - 'typo'
+
+release:
+  github:
+    owner: hirosassa
+    name: nimoji
+  draft: false
+  prerelease: auto
+  mode: replace
+  footer: |
+    ## Installation
+
+    ### Binary Download
+    Download the appropriate binary for your platform from the assets below.
+
+    ### Using Go
+    ```bash
+    go install github.com/hirosassa/nimoji@{{ .Tag }}
+    ```
+
+    ### Homebrew (macOS/Linux)
+    ```bash
+    brew install hirosassa/tap/nimoji
+    ```
+
+    **Full Changelog**: https://github.com/hirosassa/nimoji/compare/{{ .PreviousTag }}...{{ .Tag }}
+
+homebrew_casks:
+  - ids:
+      - nimoji
+    name: nimoji
+    binaries:
+      - nimoji
+    directory: Casks
+    repository:
+      owner: hirosassa
+      name: homebrew-tap
+      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
+    homepage: https://github.com/hirosassa/nimoji
+    description: "Generate Japanese IME dictionary files from employee CSV"
+    url:
+      verified: "github.com/hirosassa/nimoji/"
