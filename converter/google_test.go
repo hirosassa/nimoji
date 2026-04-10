@@ -24,7 +24,7 @@ func TestFormatGoogle(t *testing.T) {
 	}
 
 	got := buf.String()
-	expected := "たなかたろう\t田中太郎\t固有名詞\t田中太郎\n" +
+	expected := "たなか\t田中太郎\t固有名詞\t田中太郎\n" +
 		"ばんごうたなか\t001\t固有名詞\t田中太郎\n" +
 		"めーるたなか\ttanaka@example.com\t固有名詞\t田中太郎\n"
 
@@ -53,7 +53,7 @@ func TestFormatGoogle_WithNote(t *testing.T) {
 	}
 
 	got := buf.String()
-	expected := "たなかたろう\t田中太郎\t固有名詞\t田中太郎 / 営業部\n" +
+	expected := "たなか\t田中太郎\t固有名詞\t田中太郎 / 営業部\n" +
 		"ばんごうたなか\t001\t固有名詞\t田中太郎 / 営業部\n" +
 		"めーるたなか\ttanaka@example.com\t固有名詞\t田中太郎 / 営業部\n"
 
@@ -90,10 +90,10 @@ func TestFormatGoogle_MultipleEmployees(t *testing.T) {
 	}
 
 	got := buf.String()
-	expected := "たなかたろう\t田中太郎\t固有名詞\t田中太郎 / 営業部\n" +
+	expected := "たなか\t田中太郎\t固有名詞\t田中太郎 / 営業部\n" +
 		"ばんごうたなか\t001\t固有名詞\t田中太郎 / 営業部\n" +
 		"めーるたなか\ttanaka@example.com\t固有名詞\t田中太郎 / 営業部\n" +
-		"さとうはなこ\t佐藤花子\t固有名詞\t佐藤花子\n" +
+		"さとう\t佐藤花子\t固有名詞\t佐藤花子\n" +
 		"ばんごうさとう\t002\t固有名詞\t佐藤花子\n" +
 		"めーるさとう\tsato@example.com\t固有名詞\t佐藤花子\n"
 
