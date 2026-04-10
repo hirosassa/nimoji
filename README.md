@@ -6,6 +6,24 @@
 
 ## インストール
 
+### Homebrew (macOS/Linux)
+
+```bash
+brew install hirosassa/tap/nimoji
+```
+
+### GitHub Releases からバイナリをダウンロード
+
+[Releases ページ](https://github.com/hirosassa/nimoji/releases)からお使いのOS・アーキテクチャに合ったバイナリをダウンロードできます。
+
+```bash
+# 例: macOS (Apple Silicon)
+curl -sL https://github.com/hirosassa/nimoji/releases/latest/download/nimoji_Darwin_arm64.tar.gz | tar xz
+sudo mv nimoji /usr/local/bin/
+```
+
+### Go
+
 ```bash
 go install github.com/hirosassa/nimoji@latest
 ```
