@@ -33,15 +33,14 @@ func TestFormatMac(t *testing.T) {
 		t.Error("missing DOCTYPE")
 	}
 
-	// 名前エントリ
-	if !bytes.Contains([]byte(got), []byte(`<key>phrase</key>`)) {
-		t.Error("missing phrase key")
+	// 苗字読みエントリ
+	if !bytes.Contains([]byte(got), []byte(`<string>たなか</string>`)) {
+		t.Error("missing last name kana shortcut")
 	}
+
+	// 名前エントリ
 	if !bytes.Contains([]byte(got), []byte(`<string>田中太郎</string>`)) {
 		t.Error("missing name phrase")
-	}
-	if !bytes.Contains([]byte(got), []byte(`<string>たなかたろう</string>`)) {
-		t.Error("missing name shortcut")
 	}
 
 	// 社員番号エントリ
@@ -87,7 +86,7 @@ func TestFormatMac_ExactOutput(t *testing.T) {
 		<key>phrase</key>
 		<string>田中太郎</string>
 		<key>shortcut</key>
-		<string>たなかたろう</string>
+		<string>たなか</string>
 	</dict>
 	<dict>
 		<key>phrase</key>

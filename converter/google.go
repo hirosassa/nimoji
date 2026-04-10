@@ -17,7 +17,7 @@ func FormatGoogle(w io.Writer, employees []Employee) error {
 			reading string
 			word    string
 		}{
-			{e.LastNameKana + e.FirstNameKana, fullName},
+			{e.LastNameKana, fullName},
 			{"ばんごう" + e.LastNameKana, e.ID},
 			{"めーる" + e.LastNameKana, e.Email},
 		}
